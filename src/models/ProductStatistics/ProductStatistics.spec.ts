@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import IProductStatistics from './ProductStatistics.d';
 import ProductStatistics from './ProductStatistics.entity';
-import { beforeEach, describe, expect, it } from 'vitest';
 
 describe('ProductStatistics', () => {
 	let productStatistics: IProductStatistics = new ProductStatistics([]);
