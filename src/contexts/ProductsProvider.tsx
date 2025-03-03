@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { ProductsContext } from './ProductsContext';
 import { useQuery } from '@tanstack/react-query';
-import { fetchProducts, ProductsResponseItem } from '@/constants/api';
+import { fetchProducts } from '@/constants/api';
 import { Product } from '@/models/ProductStatistics/ProductStatistics.d';
 import ProductStatistics from '@/models/ProductStatistics/ProductStatistics.entity';
 
@@ -23,21 +23,18 @@ const ProductsProvider: FC<PropsWithChildren> = ({ children }) => {
 				return new ProductStatistics([]);
 			}
 
-			const withoutId: Product[] = data.map((product: ProductsResponseItem) => {
-				return {
-					...product,
-					id: undefined,
-				};
-			});
-
-			const productStatistics = new ProductStatistics(withoutId);
-
-			return productStatistics;
+			try {
+				const productStatistics = new ProductStatistics(data);
+				return productStatistics;
+			} catch (error) {
+				console.error('Failed to create product statistics', error);
+				return new ProductStatistics([]);
+			}
 		},
 	});
 
 	const averagePriceGroupByCategory = useMemo(() => {
-		if (!productStatistics) return {};
+		if (!productStatistics || !productStatistics.products.length) return {};
 		return productStatistics.getAveragePriceGroupByCategory();
 	}, [productStatistics]);
 

@@ -18,7 +18,9 @@ export default class ProductStatistics implements IProductStatistics {
 				!product.price ||
 				Object.keys(product).length !== 3
 			) {
-				throw new Error('Invalid product');
+				throw new Error(
+					`Invalid product ${product.name} ${product.category} ${product.price}`
+				);
 			}
 		}
 

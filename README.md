@@ -2,7 +2,7 @@
 
 ## Retool api
 
-[api link](https://retoolapi.dev/23tP0I/products)
+[api link](https://retoolapi.dev/6eCWio/products)
 
 ### Data generation
 
