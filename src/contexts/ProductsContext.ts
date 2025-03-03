@@ -21,7 +21,7 @@ const useProducts = () => {
 		throw new Error('useProducts must be used within a ProductsProvider');
 	}
 
-	return useContext(ProductsContext);
+	return useContext(ProductsContext) as TProductsContext;
 };
 
 export default useProducts;

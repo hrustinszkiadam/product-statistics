@@ -31,6 +31,7 @@ const ProductsProvider: FC<PropsWithChildren> = ({ children }) => {
 				return new ProductStatistics([]);
 			}
 		},
+		staleTime: 10 * 60 * 1000,
 	});
 
 	const averagePriceGroupByCategory = useMemo(() => {
@@ -45,14 +46,22 @@ const ProductsProvider: FC<PropsWithChildren> = ({ children }) => {
 		productStatistics?.products || []
 	);
 
+	const isCategoryValid = productStatistics?.products.some(
+		(product) => product.category === slowCategory
+	);
+
 	useEffect(() => {
 		if (!productStatistics) return;
+		if (!isCategoryValid) {
+			setFilteredProducts(productStatistics.products);
+			return;
+		}
 		const filtered = productStatistics.products.filter(
 			(product) => product.category === slowCategory
 		);
 
 		setFilteredProducts(filtered);
-	}, [slowCategory, productStatistics]);
+	}, [slowCategory, productStatistics, isCategoryValid]);
 
 	return (
 		<ProductsContext.Provider
