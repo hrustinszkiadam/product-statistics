@@ -1,6 +1,6 @@
 import { Product } from '@/models/ProductStatistics/ProductStatistics.d';
 
-export const API_URL = 'https://retoolapi.dev/JldPrk/products' as const;
+export const API_URL = 'https://retoolapi.dev/23tP0I/products' as const;
 
 export type ProductsResponseItem = Product & {
 	id: number;
