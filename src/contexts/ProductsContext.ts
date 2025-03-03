@@ -1,17 +1,19 @@
 import { createContext, Dispatch, SetStateAction, useContext } from 'react';
-import { Product } from '../models/ProductStatistics/ProductStatistics';
+import ProductStatistics from '@/models/ProductStatistics/ProductStatistics.entity';
+import { Product } from '@/models/ProductStatistics/ProductStatistics';
 
 export const ProductsContext = createContext<TProductsContext | undefined>(
 	undefined
 );
 
 export type TProductsContext = {
-	products: Product[];
-	category: string;
-	setCategory: Dispatch<SetStateAction<string>>;
-	averagePriceByCategory: {
+	productStatistics: ProductStatistics | undefined;
+	averagePriceGroupByCategory: {
 		[key: string]: number;
 	};
+	filteredProducts: Product[];
+	category: string;
+	setCategory: Dispatch<SetStateAction<string>>;
 };
 
 const useProducts = () => {

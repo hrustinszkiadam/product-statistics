@@ -1,5 +1,11 @@
+import ProductsProvider from './contexts/ProductsProvider';
+
 const App = () => {
-	return <div>App</div>;
+	return (
+		<ProductsProvider>
+			<div>App</div>
+		</ProductsProvider>
+	);
 };
 
 export default App;
