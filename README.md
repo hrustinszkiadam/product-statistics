@@ -1,54 +1,24 @@
-# React + TypeScript + Vite
+# Products API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Retool api
 
-Currently, two official plugins are available:
+[api link](https://retoolapi.dev/JldPrk/products)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Data generation
 
-## Expanding the ESLint configuration
+ChatGPT was used to generate mock data for the api
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+> The Prompt:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+```plaintext
+I want you to generate a csv file for me.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Think of 10 categories of products (eg. course).
+Then, generate 10 products for each category (eg. Typescript Zero to Hero).
+Think of am integer as a price in HUF for each product.
+The ids of the products should auto increment.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+The end result should be a 101 line csv file (including the headers) using ; as a separator and should look like this:
+id;category;product;price
+1;course;Typescript Zero to Hero;40000
 ```
